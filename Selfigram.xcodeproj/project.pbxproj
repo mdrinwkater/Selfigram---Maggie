@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F67BECF2050EA570054D216 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67BECE2050EA570054D216 /* User.swift */; };
+		9F67BED12050ECB40054D216 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67BED02050ECB40054D216 /* Post.swift */; };
+		9FA285EA204E5482001D4CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA285E9204E5482001D4CD7 /* ProfileViewController.swift */; };
+		9FE6F40D20576C9D00350E32 /* FeedTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6F40C20576C9D00350E32 /* FeedTableTableViewController.swift */; };
 		9FF1EACA2047A63C00A0CD5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1EAC92047A63C00A0CD5C /* AppDelegate.swift */; };
 		9FF1EACC2047A63C00A0CD5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1EACB2047A63C00A0CD5C /* ViewController.swift */; };
 		9FF1EACF2047A63C00A0CD5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF1EACD2047A63C00A0CD5C /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F67BECE2050EA570054D216 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9F67BED02050ECB40054D216 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		9FA285E9204E5482001D4CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9FE6F40C20576C9D00350E32 /* FeedTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableTableViewController.swift; sourceTree = "<group>"; };
 		9FF1EAC62047A63C00A0CD5C /* Selfigram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfigram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF1EAC92047A63C00A0CD5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF1EACB2047A63C00A0CD5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +85,9 @@
 		9FF1EABD2047A63C00A0CD5C = {
 			isa = PBXGroup;
 			children = (
+				9F67BECE2050EA570054D216 /* User.swift */,
+				9F67BED02050ECB40054D216 /* Post.swift */,
+				9FE6F40C20576C9D00350E32 /* FeedTableTableViewController.swift */,
 				9FF1EAC82047A63C00A0CD5C /* Selfigram */,
 				9FF1EADD2047A63D00A0CD5C /* SelfigramTests */,
 				9FF1EAE82047A63D00A0CD5C /* SelfigramUITests */,
@@ -100,6 +111,7 @@
 				9FF1EAC92047A63C00A0CD5C /* AppDelegate.swift */,
 				9FF1EACB2047A63C00A0CD5C /* ViewController.swift */,
 				9FF1EACD2047A63C00A0CD5C /* Main.storyboard */,
+				9FA285E9204E5482001D4CD7 /* ProfileViewController.swift */,
 				9FF1EAD02047A63C00A0CD5C /* Assets.xcassets */,
 				9FF1EAD22047A63C00A0CD5C /* LaunchScreen.storyboard */,
 				9FF1EAD52047A63C00A0CD5C /* Info.plist */,
@@ -259,8 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F67BECF2050EA570054D216 /* User.swift in Sources */,
+				9FA285EA204E5482001D4CD7 /* ProfileViewController.swift in Sources */,
+				9FE6F40D20576C9D00350E32 /* FeedTableTableViewController.swift in Sources */,
 				9FF1EACC2047A63C00A0CD5C /* ViewController.swift in Sources */,
 				9FF1EACA2047A63C00A0CD5C /* AppDelegate.swift in Sources */,
+				9F67BED12050ECB40054D216 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
