@@ -7,30 +7,28 @@
 //
 
 import UIKit
+import Parse
 
-class FeedTableTableViewController: UITableViewController {
-    
-    var words = Array (["Hello", "my", "name", "is", "Selfigram"])
+class FeedTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var posts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // UIImage has an initializer where you can pass in the name of an image in your project to create an UIImage
-        // UIImage(named: "Grumpy-Cat") can return nil if there is no image called "grumpy-cat" in your project
-        // Our definition of Post did not include the possibility of a nil UIImage
-        // so, therefore we have to add a ! at the end of it
         
-        let me = User(Xusername: "danny", XprofileImage: UIImage(named: "Grumpy-Cat")!)
-        let post0 = Post(Ximage: UIImage(named: "uglydog1")!, Xuser: me, Xcomment: "Ugly Dog 0")
-        let post1 = Post(Ximage: UIImage(named: "uglydog2")!, Xuser: me, Xcomment: "Ugly Dog 1")
-        let post2 = Post(Ximage: UIImage(named: "uglydog3")!, Xuser: me, Xcomment: "Ugly Dog 2")
-        let post3 = Post(Ximage: UIImage(named: "uglydog4")!, Xuser: me, Xcomment: "Ugly Dog 3")
-        let post4 = Post(Ximage: UIImage(named: "uglydog5")!, Xuser: me, Xcomment: "Ugly Dog 4")
-    
-        posts = [post0, post1, post2, post3, post4]
-    
+        if let query = Post.query() {
+            query.order(byDescending: "createdAt")
+            query.includeKey("user")
+            
+            query.findObjectsInBackground(block: { (posts, error) -> Void in
+                
+                if let posts = posts as? [Post]{
+                    self.posts = posts
+                    self.tableView.reloadData()
+                }
+                
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,20 +45,87 @@ class FeedTableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return self.posts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! SelfieCell
         
-        let post = posts[indexPath.row]
-        cell.imageView?.image = post.image
-        cell.textLabel?.text = post.comment
+        let post = self.posts[indexPath.row]
+        
+        // I've added this line to prevent flickering of images
+        // We are inside the cellForRowAtIndexPath method that gets called everytime we lay out a cell
+        // This always resets the image to blank, waits for the image to download, and then sets it
+        cell.selfieImageView.image = nil
+        
+        let imageFile = post.image
+        imageFile.getDataInBackground(block: {(data, error) -> Void in
+            if let data = data {
+                let image = UIImage(data: data)
+                cell.selfieImageView.image = image
+            }
+        })
+        
+        cell.usernameLabel.text = post.user.username
+        cell.commentLabel.text = post.comment
         
         return cell
     }
+
     
+    @IBAction func cameraButtonPressed(_ sender: Any) {
+        
+        
+        let pickerController = UIImagePickerController()
+        
+        pickerController.delegate = self
+        
+        if TARGET_OS_SIMULATOR == 1 {
+            
+            pickerController.sourceType = .photoLibrary
+        } else {
+            
+            pickerController.sourceType = .camera
+            pickerController.cameraDevice = .front
+            pickerController.cameraCaptureMode = .photo
+        }
+        
+        self.present(pickerController, animated: true, completion: nil)
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        
+            // setting the compression quality to 90%
+            if let imageData = UIImageJPEGRepresentation(image, 0.9),
+                let imageFile = PFFile(data: imageData),
+                let user = PFUser.current(){
+                
+                //2. We create a Post object from the image
+                let post = Post(image: imageFile, user: user, comment: "A Selfie")
+                
+                post.saveInBackground(block: { (success, error) -> Void in
+                    if success {
+                        print("Post successfully saved in Parse")
+                        
+                        //3. Add post to our posts array, chose index 0 so that it will be added
+                        //   to the top of your table instead of at the bottom (default behaviour)
+                        self.posts.insert(post, at: 0)
+                        
+                        //4. Now that we have added a post, updating our table
+                        //   We are just inserting our new Post instead of reloading our whole tableView
+                        //   Both method would work, however, this gives us a cool animation for free
+                        
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                })
+            }
+        }
+        dismiss(animated: true, completion: nil)
+        
+        tableView.reloadData()
+    }
     
     /*
     // Override to support conditional editing of the table view.
@@ -108,3 +173,4 @@ class FeedTableTableViewController: UITableViewController {
     */
 
 }
+

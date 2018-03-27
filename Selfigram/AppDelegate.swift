@@ -5,6 +5,7 @@
 //  Created by Maggie Drinkwater on 2018-02-28.
 //  Copyright © 2018 Maggie Drinkwater. All rights reserved.
 //
+import Parse
 
 import UIKit
 
@@ -15,7 +16,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Initialize Parse.
+        // Replace YOUR_APP_ID and URL_TO_YOUR_PARSE_SERVER with the values you chose when you installed your Parse server.
+        let configuration = ParseClientConfiguration { clientConfiguration in
+            clientConfiguration.applicationId = "Drinkwater"
+            clientConfiguration.server = "https://drinkwater-app.herokuapp.com/parse"
+        }
+        Post.registerSubclass()
+        Parse.initialize(with: configuration)
+        
+        let user = PFUser()
+        let username = "Magmo"
+        let password = "Drinkmo"
+        user.username = username
+        user.password = password
+        user.signUpInBackground(block: { (success, error) -> Void in
+            if success {
+            }else {
+                PFUser.logInWithUsername(inBackground: username, password: password, block: { (user, error) -> Void in
+                    if let user = user {
+                        print("successfully logged in \(user)")
+                    }
+                })
+            }
+        })
+        
+        
         return true
     }
 
