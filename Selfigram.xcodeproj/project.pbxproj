@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F2E289D205A0EFF007668A1 /* SelfieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E289C205A0EFF007668A1 /* SelfieCell.swift */; };
+		9F536BA7206C7EC1004B2362 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F536BA6206C7EC0004B2362 /* Activity.swift */; };
 		9F67BECF2050EA570054D216 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67BECE2050EA570054D216 /* User.swift */; };
 		9F67BED12050ECB40054D216 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67BED02050ECB40054D216 /* Post.swift */; };
 		9FA285EA204E5482001D4CD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA285E9204E5482001D4CD7 /* ProfileViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		7A76D4AF8961E934DF9CE32D /* Pods_Selfigram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Selfigram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2E289C205A0EFF007668A1 /* SelfieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieCell.swift; sourceTree = "<group>"; };
+		9F536BA6206C7EC0004B2362 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = /Users/maggie/Documents/Selfigram/Selfigram/Activity.swift; sourceTree = "<absolute>"; };
 		9F67BECE2050EA570054D216 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9F67BED02050ECB40054D216 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9FA285E9204E5482001D4CD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		9FF1EAC82047A63C00A0CD5C /* Selfigram */ = {
 			isa = PBXGroup;
 			children = (
+				9F536BA6206C7EC0004B2362 /* Activity.swift */,
 				9FF1EAC92047A63C00A0CD5C /* AppDelegate.swift */,
 				9FF1EACB2047A63C00A0CD5C /* ViewController.swift */,
 				9FF1EACD2047A63C00A0CD5C /* Main.storyboard */,
@@ -363,6 +366,7 @@
 				9FE6F40D20576C9D00350E32 /* FeedTableTableViewController.swift in Sources */,
 				9FF1EACC2047A63C00A0CD5C /* ViewController.swift in Sources */,
 				9FF1EACA2047A63C00A0CD5C /* AppDelegate.swift in Sources */,
+				9F536BA7206C7EC1004B2362 /* Activity.swift in Sources */,
 				9F67BED12050ECB40054D216 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

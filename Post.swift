@@ -14,6 +14,10 @@ class Post: PFObject, PFSubclassing {
     @NSManaged var image:PFFile
     @NSManaged var user:PFUser
     @NSManaged var comment:String
+    var likes: PFRelation<PFObject>! {
+        return relation(forKey: "likes")
+    }
+
     
     static func parseClassName() -> String {
         // sets what the table name on Parse will be called
